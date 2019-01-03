@@ -1,0 +1,22 @@
+{
+  "name": "sayori",
+  "version": "0.0.2",
+  "description": "",
+  "main": "src/index.js",
+  "bin": {
+    "run": "src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivan Kuznetsov <ivankuznetsov316@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "walk": "^2.3.14"
+  },
+  "devDependencies": {
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
