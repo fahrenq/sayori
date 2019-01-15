@@ -12,6 +12,7 @@
   "author": "Ivan Kuznetsov <ivankuznetsov316@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "debug": "^4.1.1",
     "walk": "^2.3.14"
   },
   "devDependencies": {

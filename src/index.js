@@ -1,5 +1,5 @@
+const debug = require('debug')('sayori');
 const walk = require('walk');
-
 const path = require('path');
 
 const DEFAULT_ACTIONS_PATH = 'actions';
@@ -30,6 +30,8 @@ const VERBS = [
 ];
 
 module.exports = (app, options = {}) => {
+  debug('Initialized');
+
   const base = path.dirname(require.main.filename);
   const actionsPath = `${base}/${DEFAULT_ACTIONS_PATH}`;
 
@@ -51,10 +53,19 @@ module.exports = (app, options = {}) => {
         }
 
         const pth = root.replace(actionsPath, '').replace('_', ':');
-        console.log({ pth });
-        const m = require(`${root}/${fileStats.name}`);
+
+        const m = require(`${root}/${fileStats.name}`); // eslint-disable-line
+
+        debug('Registered route %o', { path: pth, verb });
 
         app[verb](pth, ...m);
+      },
+
+      errors(root, nodeStatsArray, next) {
+        debug('Errored on file %s', `${root}/${nodeStatsArray[0].name}`);
+        // Not doing `throw nodeStatsArray[0].error` to have nicer appearance in the traceback
+        const errorRegisteringRoute = nodeStatsArray[0].error;
+        throw errorRegisteringRoute;
       },
     },
   };
